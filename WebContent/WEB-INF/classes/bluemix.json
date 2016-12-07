@@ -1,0 +1,42 @@
+{
+    "alchemy_api": [
+        {
+            "credentials": {
+                "url": "https://gateway-a.watsonplatform.net/calls",
+                "note": "This is your previous free key. If you want a different one, please wait 24 hours after unbinding the key and try again.",
+                "apikey": "156c2fdcb1eb827fe93e711de4bc0234c5af6b48"
+            },
+            "syslog_drain_url": null,
+            "label": "alchemy_api",
+            "provider": null,
+            "plan": "free",
+            "name": "AlchemyAPI-rf",
+            "tags": [
+                "watson",
+                "ibm_created",
+                "ibm_dedicated_public"
+            ]
+        }
+    ],
+    "cloudantNoSQLDB": [
+        {
+            "credentials": {
+                "username": "df0d9f2c-5435-4c28-a662-a8c1f4f34aab-bluemix",
+                "password": "34842d0b96aecaf8604593e1f16b90a99cdb87da5c94ada0a3b9ee9db52ea01a",
+                "host": "df0d9f2c-5435-4c28-a662-a8c1f4f34aab-bluemix.cloudant.com",
+                "port": 443,
+                "url": "https://df0d9f2c-5435-4c28-a662-a8c1f4f34aab-bluemix:34842d0b96aecaf8604593e1f16b90a99cdb87da5c94ada0a3b9ee9db52ea01a@df0d9f2c-5435-4c28-a662-a8c1f4f34aab-bluemix.cloudant.com"
+            },
+            "syslog_drain_url": null,
+            "label": "cloudantNoSQLDB",
+            "provider": null,
+            "plan": "Lite",
+            "name": "OD-liberty-watson-cloudantNoSQLDB",
+            "tags": [
+                "data_management",
+                "ibm_created",
+                "ibm_dedicated_public"
+            ]
+        }
+    ]
+}
