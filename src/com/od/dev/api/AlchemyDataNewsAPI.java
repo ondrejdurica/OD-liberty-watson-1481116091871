@@ -90,11 +90,13 @@ private JsonArray callDataNews(String searchterm, long startdate, long enddate, 
 	
     CloseableHttpResponse response1 = null;
     try {
+    	System.out.println("Calling httpclient [" + params + "]");
 	CloseableHttpClient httpclient = HttpClients.createDefault();
 	HttpGet httpGet = new HttpGet(urlGetNews+"?"+params);
+	System.out.println("Invoking httpclient.execute");
 	response1 = httpclient.execute(httpGet);
 					
-	System.out.println(response1.getStatusLine());
+	System.out.println("Status Line:" + response1.getStatusLine());
 					
 	HttpEntity entity1 = response1.getEntity();
 	String result = EntityUtils.toString(entity1);
@@ -108,7 +110,7 @@ private JsonArray callDataNews(String searchterm, long startdate, long enddate, 
 	ioe.printStackTrace();
     }finally {
 	try {
-	    response1.close();
+		if (response1 != null)	    response1.close();
 	} catch(IOException ioe){
 	    ioe.printStackTrace();
 	}
