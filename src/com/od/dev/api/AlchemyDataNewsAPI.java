@@ -74,7 +74,7 @@ public class AlchemyDataNewsAPI {
 	return Response.ok(jsonArrayResponse.toString()).build();		
     }
 	
-   private JsonArray callDataNews(String searchterm, long startdate, long enddate, int count) {
+private JsonArray callDataNews(String searchterm, long startdate, long enddate, int count) {
 		
     String apikey = BluemixConfig.getInstance().getAlchemyApikey();
 		
