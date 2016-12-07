@@ -1,4 +1,4 @@
-package com.remkohde.dev.liberty.api;
+package com.od.dev.liberty.api;
 
 import java.io.BufferedReader;
 import java.io.IOException;
