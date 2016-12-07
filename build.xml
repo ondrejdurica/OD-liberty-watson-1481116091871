@@ -10,7 +10,7 @@
 	</condition>
 	<property name="warname" value="JavaCloudantApp.war"/>
     <path id="classpathDir">
-       <pathelement location="bin"/>
+        <pathelement location="bin"/>
     	<pathelement location="WebContent/WEB-INF/lib/cloudant-client-2.0.0.jar"/> 
     	<pathelement location="WebContent/WEB-INF/lib/commons-codec-1.9.jar"/>
     	<pathelement location="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
@@ -26,10 +26,7 @@
 		  <fileset dir="dep-jar"> 
         	<include name="*.jar"/> 
     	</fileset>
-	<fileset dir="dep-jar"> 
-        	<include name="*.jar"/> 
-    	</fileset>
-    </path>
+	</path>
     <target name="init">
         <mkdir dir="bin"/>
     </target>

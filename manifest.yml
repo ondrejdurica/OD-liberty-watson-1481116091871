@@ -8,4 +8,4 @@ applications:
   disk_quota: 1024M
   services:
   - OD-liberty-watson-cloudantNoSQLDB
-  - AlchemyAPI-rf
+  - AlchemyAPI-NotFreePlan
