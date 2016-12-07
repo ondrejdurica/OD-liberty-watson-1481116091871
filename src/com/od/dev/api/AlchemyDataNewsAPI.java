@@ -1,4 +1,4 @@
-package com.<username>.dev.liberty.api;
+package com.od.dev.liberty.api;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
