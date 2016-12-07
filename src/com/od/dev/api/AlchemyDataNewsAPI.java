@@ -15,6 +15,13 @@ import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import java.io.IOException;
 
 
 @Path("/watson/news")
@@ -67,14 +74,45 @@ public class AlchemyDataNewsAPI {
 	return Response.ok(jsonArrayResponse.toString()).build();		
     }
 	
-    private JsonArray callDataNews(String searchterm, long startdate, long enddate, int count) {
+   private JsonArray callDataNews(String searchterm, long startdate, long enddate, int count) {
+		
+    String apikey = BluemixConfig.getInstance().getAlchemyApikey();
+		
+    JsonArray alchemyDocs = null;
 	
-	String apikey = BluemixConfig.getInstance().getAlchemyApikey();
-		
-	JsonArray alchemyDocs = new JsonArray();
-	    
-	// @TODO: Implement the HTTP Request to the Watson AlchemyAPI
-		
-	return alchemyDocs;
+    String urlGetNews = "https://gateway-a.watsonplatform.net/calls/data/GetNews";
+    String params = "outputMode=json"+"&"+
+	            "start="+startdate+"&"+
+		    "end="+enddate+"&count="+count+"&"+
+		    "q.enriched.url.enrichedTitle.keywords.keyword.text="+searchterm+"&"+
+		    "return=enriched.url.url,enriched.url.title,enriched.url.publicationDate.date,enriched.url.docSentiment.score"+"&"+
+		    "apikey="+apikey;
+	
+    CloseableHttpResponse response1 = null;
+    try {
+	CloseableHttpClient httpclient = HttpClients.createDefault();
+	HttpGet httpGet = new HttpGet(urlGetNews+"?"+params);
+	response1 = httpclient.execute(httpGet);
+					
+	System.out.println(response1.getStatusLine());
+					
+	HttpEntity entity1 = response1.getEntity();
+	String result = EntityUtils.toString(entity1);
+	
+	Gson gson = new Gson();
+	JsonObject alchemyJsonObject = gson.fromJson(result, JsonObject.class);
+	JsonObject resultJsonObject = alchemyJsonObject.get("result").getAsJsonObject();
+	alchemyDocs = resultJsonObject.get("docs").getAsJsonArray();
+			
+    } catch(IOException ioe){
+	ioe.printStackTrace();
+    }finally {
+	try {
+	    response1.close();
+	} catch(IOException ioe){
+	    ioe.printStackTrace();
+	}
     }
+    return alchemyDocs;
+}
 }
